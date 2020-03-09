@@ -86,14 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./1_multitable/GuGuDan.jsx":
-/*!**********************************!*\
-  !*** ./1_multitable/GuGuDan.jsx ***!
-  \**********************************/
+/***/ "./2_wordchain/WordChain.jsx":
+/*!***********************************!*\
+  !*** ./2_wordchain/WordChain.jsx ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst GuGuDan = () => {\n  const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));\n  const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));\n  const [value, setValue] = React.useState('');\n  const [result, setResult] = React.useState('');\n  const inputRef = React.useRef(null);\n\n  const onChangeInput = e => {\n    setValue(e.target.value);\n  };\n\n  const onSubmitForm = e => {\n    e.preventDefault();\n\n    if (parseInt(value) === first * second) {\n      setResult('正解は' + value);\n      setFirst(Math.ceil(Math.random() * 9));\n      setSecond(Math.ceil(Math.random() * 9));\n      setValue('');\n    } else {\n      setResult('不正解！');\n      setValue('');\n    }\n\n    inputRef.current.focus();\n  };\n\n  console.log('rendering!');\n  return React.createElement(React.Fragment, null, React.createElement(\"div\", null, first, \"\\u304B\\u3051\\u308B\", second, \"\\u306F\\uFF1F\"), React.createElement(\"form\", {\n    onSubmit: onSubmitForm\n  }, React.createElement(\"input\", {\n    type: \"number\",\n    value: value,\n    ref: inputRef,\n    onChange: onChangeInput\n  }), React.createElement(\"button\", null, \"\\u63A1\\u70B9\\u3059\\u308B\")), React.createElement(\"div\", null, \"\\u7D50\\u679C\\uFF1A\", result));\n};\n\nmodule.exports = GuGuDan;\n\n//# sourceURL=webpack:///./1_multitable/GuGuDan.jsx?");
+eval("function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst {\n  Component\n} = React;\n\nclass WordChain extends Component {\n  constructor(...args) {\n    super(...args);\n\n    _defineProperty(this, \"state\", {\n      word: 'スタート',\n      value: '',\n      result: ''\n    });\n\n    _defineProperty(this, \"onSubmitForm\", e => {\n      e.preventDefault();\n\n      if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {\n        this.setState({\n          word: this.state.value,\n          value: '',\n          ressult: 'オッケー'\n        });\n      } else {\n        this.setState({\n          value: '',\n          result: '違う言葉にしてね！'\n        });\n      }\n\n      this.input0.focus();\n    });\n\n    _defineProperty(this, \"onChangeInput\", e => {\n      this.setState({\n        value: e.target.value\n      });\n    });\n\n    _defineProperty(this, \"input0\", void 0);\n\n    _defineProperty(this, \"onRefInput\", e => {\n      this.input0 = e;\n    });\n  }\n\n  render() {\n    return React.createElement(React.Fragment, null, React.createElement(\"div\", null, this.state.word), React.createElement(\"form\", {\n      onSubmit: this.onSubmitForm\n    }, React.createElement(\"input\", {\n      ref: this.onRefInput,\n      value: this.state.value,\n      onChange: this.onChangeInput\n    }), React.createElement(\"button\", null, \"\\u6B21\")), React.createElement(\"div\", null, this.state.result));\n  }\n\n}\n\nmodule.exports = WordChain;\n\n//# sourceURL=webpack:///./2_wordchain/WordChain.jsx?");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nconst Gugudan = __webpack_require__(/*! ./1_multitable/GuGuDan */ \"./1_multitable/GuGuDan.jsx\");\n\nReactDom.render(React.createElement(Gugudan, null), document.querySelector('#root'));\n\n//# sourceURL=webpack:///./client.jsx?");
+eval("const React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ReactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nconst Component = __webpack_require__(/*! ./2_wordchain/WordChain */ \"./2_wordchain/WordChain.jsx\");\n\nReactDom.render(React.createElement(Component, null), document.querySelector('#root'));\n\n//# sourceURL=webpack:///./client.jsx?");
 
 /***/ }),
 
