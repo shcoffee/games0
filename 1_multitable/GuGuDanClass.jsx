@@ -47,14 +47,14 @@ class GuGuDanClass extends Component {
     render(){
         console.log('rendering!');
         return (
-            <React.Fragment>
+            <>
                 <div>{this.state.first}かける{this.state.second}は？</div>    
                 <form　onSubmit={this.onSubmit} >
                     <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange} />    
                     <button>答え入力してクリック</button>
                 </form>
                 <div>結果：{this.state.result}</div>
-            </React.Fragment>
+            </>
         );
     }
 }
