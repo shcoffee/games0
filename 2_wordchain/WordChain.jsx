@@ -1,52 +1,39 @@
 const React = require('react');
-const { Component } = React;
+const { useState, useRef } = React;
 
-class WordChain extends Component {
-    state = {
-        word: 'スタート',
-        value: '',
-        result: '',
-    }
+const WordChain = () => {
+    const [word, setWord] = useState('３２１スタート');
+    const [value, setVaule] = useState('');
+    const [result, setResult] = useState('');
+    const inputRef = useRef(null);
 
-    onSubmitForm = (e) => {
+    const onSubmitForm = (e) => {
         e.preventDefault();
-        if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
-            this.setState({
-                word: this.state.value,
-                value: '',
-                result: 'オッケー',
-            });
+        if (word[word.length - 1] === value[0]) {
+            setWord(value);
+            setVaule('');
+            setResult('オッケー');
         } else {
-            this.setState({
-                value: '',
-                result: '違う言葉にしてね！',
-            });
+            setVaule('');
+            setResult('違う言葉にしてね！');
         }
-        this.input0.focus();
+        inputRef.current.focus();
     };
 
-    onChangeInput = (e) => {
-        this.setState({value: e.target.value})
+    const onChangeInput = (e) => {
+        setVaule(e.target.value);
     };
-
-    input0;
-
-    onRefInput = (e) => {
-        this.input0 = e;
-    };
-
-    render() {
-        return (
-            <>
-                <div>{this.state.word}</div>
-                <form onSubmit={this.onSubmitForm}>
-                    <input ref={this.onRefInput} value={this.state.value} onChange={this.onChangeInput} />
-                    <button >次!!!</button>
-                </form>
-                <div>{this.state.result}</div>
-            </>
-        );
-    }
+   
+    return (
+        <>
+            <div>{word}</div>
+            <form onSubmit={onSubmitForm}>
+                <input ref={inputRef} value={value} onChange={onChangeInput} />
+                <button >次!!!</button>
+            </form>
+            <div>{result}</div>
+        </>
+    );
 }
 
 module.exports = WordChain;
